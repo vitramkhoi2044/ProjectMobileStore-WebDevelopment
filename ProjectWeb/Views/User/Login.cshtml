@@ -1,0 +1,45 @@
+﻿@model ProjectWeb.Models.LoginViewModel;
+@{
+    ViewData["Title"] = "Login";
+}
+
+<section class="contact spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 border rounded border-success">
+                <h2 class="text-center mt-4">@ViewData["Title"]</h2>
+                <hr/>
+                <section class="mt-2 mb-4 ml-4 mr-4">
+                    <form id="account" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-floating">
+                            <label asp-for="@Model.Email" class="form-label"></label>
+                            <input asp-for="@Model.Email" class="form-control" autocomplete="username" aria-required="true" />
+                            <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-floating">
+                            <label asp-for="@Model.Password" class="form-label"></label>
+                            <input asp-for="@Model.Password" class="form-control" autocomplete="current-password" aria-required="true" />
+                            <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                        </div>
+                        <div>
+                            <p class="text-right">
+                                <a asp-controller="User" asp-action="Register" class="text-success">Register as a new user</a>
+                            </p>
+                        </div>
+                        <div class="mt-4 mb-5">
+                            <button id="login-submit" type="submit" class="w-100 btn btn-lg btn btn-success">Log in</button>
+                        </div>
+
+                    </form>
+                </section>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

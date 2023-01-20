@@ -1,0 +1,14 @@
+﻿@model List<ProjectWeb.Data.BrandCategories>
+
+<div class="hero__categories">
+    <div class="hero__categories__all">
+        <i class="fa fa-bars"></i>
+        <span>All brands</span>
+    </div>
+    <ul>
+        @foreach (var brand in Model)
+        {
+            <li><a asp-controller="Mobile" asp-action="MobileByBrand" asp-route-id=@brand.BrandID>@brand.BrandName</a></li>
+        }
+    </ul>
+</div>

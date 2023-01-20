@@ -1,0 +1,79 @@
+﻿@model ProjectWeb.Models.RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<section class="contact spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 border rounded border-success">
+                <h2 class="text-center mt-4">Create a new account.</h2>
+                <hr />
+                <form id="registerForm" method="post" class="mt-2 mb-4 ml-4 mr-4">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-floating">
+                        <label asp-for="@Model.LastName"></label>
+                        <input asp-for="@Model.LastName" class="form-control" autocomplete="" aria-required="true" />
+                        <span asp-validation-for="@Model.LastName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-floating">
+                        <label asp-for="@Model.FirstName"></label>
+                        <input asp-for="@Model.FirstName" class="form-control" autocomplete="" aria-required="true" />
+                        <span asp-validation-for="@Model.FirstName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-floating">
+                        <label asp-for="@Model.Sex"></label>
+                        <input asp-for="@Model.Sex" class="form-control" autocomplete="" aria-required="true" />
+                        <span asp-validation-for="@Model.Sex" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-floating">
+                        <label asp-for="@Model.DateOfBirth"></label>
+                        <input asp-for="@Model.DateOfBirth" class="form-control" autocomplete="" aria-required="true" />
+                        <span asp-validation-for="@Model.DateOfBirth" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-floating">
+                        <label asp-for="@Model.Address"></label>
+                        <input asp-for="@Model.Address" class="form-control" autocomplete="" aria-required="true" />
+                        <span asp-validation-for="@Model.Address" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-floating">
+                        <label asp-for="@Model.PhoneNumber"></label>
+                        <input asp-for="@Model.PhoneNumber" class="form-control" autocomplete="" aria-required="true" />
+                        <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-floating">
+                        <label asp-for="@Model.Email"></label>
+                        <input asp-for="@Model.Email" class="form-control" autocomplete="username" aria-required="true" />
+                        <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-floating">
+                        <label asp-for="@Model.Password"></label>
+                        <input asp-for="@Model.Password" class="form-control" autocomplete="new-password" aria-required="true" />
+                        <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating">
+                        <label asp-for="@Model.ConfirmPassword"></label>
+                        <input asp-for="@Model.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
+                        <span asp-validation-for="@Model.ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <div class="mt-4 mb-5">
+                        <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-success">Register</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

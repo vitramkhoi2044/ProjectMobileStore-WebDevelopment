@@ -1,0 +1,43 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using ProjectWeb.Data;
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="col-lg-6 col-md-6">
+        <div class="header__top__left">
+            <ul>
+                <li> Welcome @UserManager.GetUserName(User)!</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6">
+        <div class="header__top__right">
+            <div class="header__top__right__auth">
+                <a asp-controller="User" asp-action="Logout"><i class="fa fa-sign-out"></i> Logout</a>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="col-lg-6 col-md-6">
+        <div class="header__top__left">
+            <ul>
+                <li> Welcome to my shop!</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6">
+        <div class="header__top__right">
+            <div class="header__top__right__social">
+                <a asp-controller="User" asp-action="Login"><i class="fa fa-user"></i> Login</a>
+            </div>
+            <div class="header__top__right__auth">
+                <a asp-controller="User" asp-action="Register"><i class="fa fa-user-plus"></i> Register</a>
+            </div>
+        </div>
+    </div>
+}

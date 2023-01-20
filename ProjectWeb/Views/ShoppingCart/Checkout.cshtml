@@ -1,0 +1,85 @@
+﻿@model ProjectWeb.Models.CheckoutViewModel
+
+<!-- Checkout Section Begin -->
+<section class="checkout spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h6>
+                    <span class="icon_tag_alt"></span> Have a coupon? <a asp-controller="ShoppingCart" asp-action="Cart">Click here</a> to enter your code
+                </h6>
+            </div>
+        </div>
+        <div class="checkout__form">
+            <h4>Billing Details</h4>
+            <form method="post">
+                <div class="row">
+                    <div class="col-lg-8 col-md-6">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>First Name<span>*</span></p>
+                                    <input asp-for="@Model.User.FirstName" class="form-control" autocomplete="" aria-required="true" readonly=true />
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Last Name<span>*</span></p>
+                                    <input asp-for="@Model.User.LastName" class="form-control" autocomplete="" aria-required="true" readonly=true />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkout__input">
+                            <p>Address<span>*</span></p>
+                            <input asp-for="@Model.User.Address" class="form-control" autocomplete="" aria-required="true" readonly=true />
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Phone<span>*</span></p>
+                                    <input asp-for="@Model.User.PhoneNumber" class="form-control" autocomplete="" aria-required="true" readonly=true />
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Email<span>*</span></p>
+                                    <input asp-for="@Model.User.Email" class="form-control" autocomplete="" aria-required="true" readonly=true />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="checkout__order">
+                            <h4>Your Order</h4>
+                            <div class="checkout__order__products">Products <span>Total</span></div>
+                            @if (Model.Items.Count > 0)
+                            {
+                                double total = 0;
+                                <ul>
+                                    @foreach (var cartitem in Model.Items)
+                                    {
+                                        double amount = Double.Parse(cartitem.quantity.ToString()) * Double.Parse(cartitem.mobile.Price.ToString());
+                                        total += amount;
+                                        <li>@cartitem.mobile.MobileName <span>@amount.ToString("n0")</span></li>
+                                    }
+                                    @if (Model.discountPercent > 0)
+                                    {
+                                        double discount = Model.discountPercent * 100;
+                                        <li style="color: red"> Discount Percent <span>@discount.ToString()%</span></li>
+                                    }
+                                </ul>
+                                <div class="checkout__order__subtotal">
+                                    Subtotal <span>@total.ToString("n0")</span>
+                                </div>
+                                total = total - (total * Model.discountPercent); 
+                                <div class="checkout__order__total">Total <span>@total.ToString("n0")</span></div>
+                            }
+                            <button type="submit" class="site-btn">PLACE ORDER</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!-- Checkout Section End -->

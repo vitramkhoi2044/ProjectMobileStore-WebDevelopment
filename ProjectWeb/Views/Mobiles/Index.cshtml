@@ -1,0 +1,79 @@
+﻿@model IEnumerable<ProjectWeb.Data.Mobiles>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<section class="contact spad">
+    <div class="container">
+        <div class="row">
+            <h1>Index</h1>
+        </div>
+        <div class="row">
+            <div>
+                <a asp-action="Create" class="btn btn-success">Create New</a>
+            </div>
+            <table class="table mt-3">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MobileName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Color)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TotalImage)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MobileQuantity)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MobileType)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Price)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.BrandCategories)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MobileName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Color)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TotalImage)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MobileQuantity)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MobileType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BrandCategories.BrandName)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.MobileID" class="btn btn-success">Edit</a>
+                                <a asp-action="Details" asp-route-id="@item.MobileID" class="btn btn-success">Details</a>
+                                <a asp-action="Delete" asp-route-id="@item.MobileID" class="btn btn-success">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

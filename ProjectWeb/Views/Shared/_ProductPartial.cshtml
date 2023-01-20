@@ -1,0 +1,54 @@
+﻿@model ProjectWeb.Data.Mobiles
+
+<div class="col-lg-3 col-md-4 col-sm-6 mix @Model.MobileType-@Model.BrandCategories.BrandName">
+    <div class="featured__item">
+        
+        <div class="featured__item__pic set-bg" data-setbg=@Url.Content("~/img/data/"+@Model.MobileID+".jpg")>
+            <ul class="featured__item__pic__hover">
+                <li><a asp-controller="Mobile" asp-action="Detail" asp-route-id=@Model.MobileID><i class="fa fa-info"></i></a></li>
+                <li><a class="addtocart" data-id="@Model.MobileID"><i class="fa fa-shopping-cart"></i></a></li>
+            </ul>
+        </div>
+        <div class="featured__item__text">
+            <h6><a asp-controller="Mobile" asp-action="Detail" asp-route-id=@Model.MobileID>@Model.MobileName</a></h6>
+            <h5>@formatPrice(int.Parse(Model.Price.ToString()))&#8363</h5>
+        </div>
+    </div>
+</div>
+
+@{
+    String formatPrice(int price)
+    {
+        int a, b, c, d, e, f, g, h, j;
+        a = price % 10;
+        price = price / 10;
+        b = price % 10;
+        price = price / 10;
+        c = price % 10;
+        price = price / 10;
+        d = price % 10;
+        price = price / 10;
+        e = price % 10;
+        price = price / 10;
+        f = price % 10;
+        price = price / 10;
+        g = price % 10;
+        price = price / 10;
+        h = price % 10;
+        price = price / 10;
+        j = price % 10;
+        price = price / 10;
+        if (j != 0)
+        {
+            return (j.ToString()) + (h.ToString()) + (g.ToString()) + "." + (f.ToString()) + (e.ToString()) + (d.ToString()) + "." + (c.ToString()) + (b.ToString()) + (a.ToString());
+        }
+        else if (h != 0)
+        {
+            return (h.ToString()) + (g.ToString()) + "." + (f.ToString()) + (e.ToString()) + (d.ToString()) + "." + (c.ToString()) + (b.ToString()) + (a.ToString());
+        }
+        else
+        {
+            return (g.ToString()) + "." + (f.ToString()) + (e.ToString()) + (d.ToString()) + "." + (c.ToString()) + (b.ToString()) + (a.ToString());
+        }
+    }
+}

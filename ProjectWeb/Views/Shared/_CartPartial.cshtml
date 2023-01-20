@@ -1,0 +1,32 @@
+﻿@using Microsoft.AspNetCore.Http
+@using Newtonsoft.Json
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+@{
+    var session = HttpContextAccessor.HttpContext.Session;
+    string jsoncart = session.GetString(ProjectWeb.Controllers.ShoppingCartController.CARTKEY);
+    if (jsoncart != null)
+    {
+        double total = 0;
+        int count = 0;
+        var cart = JsonConvert.DeserializeObject<List<CartItemViewModel>>(jsoncart);
+        foreach (var item in cart)
+        {
+            double amount = Double.Parse(item.quantity.ToString()) * Double.Parse(item.mobile.Price.ToString());
+            total += amount;
+            count += item.quantity;
+        }
+        <ul>
+            <li><a asp-controller="ShoppingCart" asp-action="Cart"><i class="fa fa-shopping-bag"></i> <span>@count</span></a></li>
+        </ul>
+        <div class="header__cart__price">item: <span>@total.ToString("n0")&#8363</span></div>
+    }
+    else
+    {
+        <ul>
+            <li><a asp-controller="ShoppingCart" asp-action="Cart"><i class="fa fa-shopping-bag"></i> <span>0</span></a></li>
+        </ul>
+        <div class="header__cart__price">item: <span>0&#8363</span></div>
+    }
+}
